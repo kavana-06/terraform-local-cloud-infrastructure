@@ -21,3 +21,9 @@ module "compute" {
 
   network_name = docker_network.local_cloud_network.name
 }
+
+module "security" {
+  source = "../../modules/security"
+
+  network_name = "local-cloud-secure-network"
+}
