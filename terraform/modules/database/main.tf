@@ -29,4 +29,11 @@ resource "docker_container" "postgres" {
     internal = 5432
     external = 5432
   }
+
+  healthcheck {
+    test     = ["CMD-SHELL", "pg_isready -U ${var.database_user} -d ${var.database_name}"]
+    interval = "30s"
+    timeout  = "5s"
+    retries  = 3
+  }
 }
