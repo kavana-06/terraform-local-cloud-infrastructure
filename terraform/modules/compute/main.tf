@@ -23,4 +23,10 @@ resource "docker_container" "app" {
     internal = 80
     external = 8080
   }
+healthcheck {
+  test     = ["CMD", "wget", "--spider", "-q", "http://localhost"]
+  interval = "30s"
+  timeout  = "5s"
+  retries  = 3
+ }
 }
