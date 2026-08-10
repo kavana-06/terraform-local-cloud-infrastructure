@@ -33,6 +33,6 @@ module "database" {
   container_name    = "local-postgres"
   database_name     = "localcloud"
   database_user     = "admin"
-  database_password = "localcloud123"
+  database_password = var.database_password
   network_name      = docker_network.local_cloud_network.name
 }
