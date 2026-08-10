@@ -27,3 +27,12 @@ module "security" {
 
   network_name = "local-cloud-secure-network"
 }
+module "database" {
+  source = "../../modules/database"
+
+  container_name    = "local-postgres"
+  database_name     = "localcloud"
+  database_user     = "admin"
+  database_password = "localcloud123"
+  network_name      = docker_network.local_cloud_network.name
+}
