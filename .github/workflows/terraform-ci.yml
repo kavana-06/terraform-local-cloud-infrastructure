@@ -33,4 +33,6 @@ jobs:
 
       - name: Terraform Plan
         working-directory: terraform/environments/local
-        run: terraform plan
+        env:
+          TF_VAR_database_password: ${{ secrets.TF_VAR_database_password }}
+        run: terraform plan -input=false
