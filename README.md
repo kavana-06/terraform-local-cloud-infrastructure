@@ -1,5 +1,7 @@
 # Terraform Local Cloud Infrastructure
 
+![Terraform CI](https://github.com/kavana-06/terraform-local-cloud-infrastructure/actions/workflows/terraform-ci.yml/badge.svg)
+
 Infrastructure as Code project that provisions and manages a local cloud-style environment using Terraform, Docker, and GitHub Actions.
 
 ## Overview
@@ -64,3 +66,22 @@ The environment includes:
                               |
                               v
                      Docker Networks
+---
+
+## CI/CD Evidence
+
+### Terraform CI
+
+![Terraform CI](docs/terraform-ci.png)
+
+### Terraform CD
+
+![Terraform CD](docs/terraform-cd.png)
+
+### Docker Containers
+
+![Docker Containers](docs/docker-containers.png)
+
+### Application
+
+![Application](docs/application.png)
