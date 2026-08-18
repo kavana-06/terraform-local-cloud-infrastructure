@@ -1,0 +1,19 @@
+name: Terraform CD
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Local Terraform Deployment
+    runs-on: [self-hosted, Linux, X64]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Terraform Deployment
+        run: ./scripts/deploy.sh
+
+      - name: Verify application
+        run: curl --fail http://localhost:8080
