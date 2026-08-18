@@ -1,45 +1,66 @@
 # Terraform Local Cloud Infrastructure
 
-Infrastructure as Code project that provisions and manages a local cloud-style environment using Terraform and Docker.
+Infrastructure as Code project that provisions and manages a local cloud-style environment using Terraform, Docker, and GitHub Actions.
 
 ## Overview
 
-This project demonstrates how cloud infrastructure concepts can be implemented locally using Infrastructure as Code (IaC).
+This project demonstrates how cloud infrastructure and DevOps practices can be implemented locally without using a paid cloud account.
 
-Instead of manually creating Docker resources, Terraform defines and manages the infrastructure declaratively.
+Terraform declaratively provisions and manages Docker-based infrastructure, while GitHub Actions provides automated CI validation and CD deployment through a self-hosted runner.
 
-The current implementation provisions:
+The environment includes:
 
-- A Docker bridge network
-- A reusable Terraform compute module
-- An Nginx application container
-- Terraform infrastructure outputs
-- A reproducible local infrastructure workflow
+- Docker bridge networking
+- Secure internal Docker network
+- Nginx application container
+- PostgreSQL database container
+- Terraform modules
+- Terraform outputs
+- Terraform CI validation
+- Terraform CD deployment
+- Self-hosted GitHub Actions runner
+- Automated application verification
 
 ## Architecture
 
 ```text
-                         Terraform
-                             |
-                             v
-                  +----------------------+
-                  | Local Environment    |
-                  | terraform/environments|
-                  |       /local         |
-                  +----------+-----------+
-                             |
-                  +----------+----------+
-                  |                     |
-                  v                     v
-          Docker Network        Compute Module
-       local-cloud-network             |
-                                      v
-                              Docker Image
-                               nginx:alpine
-                                      |
-                                      v
-                              Docker Container
-                               local-cloud-app
-                                      |
-                                      v
-                              localhost:8080
+                         GitHub Repository
+                                |
+                                v
+                     +----------------------+
+                     |   GitHub Actions     |
+                     |                      |
+                     | Terraform CI        |
+                     | Format / Validate    |
+                     | Plan                 |
+                     +----------+-----------+
+                                |
+                                v
+                     +----------------------+
+                     | Self-Hosted Runner   |
+                     |       Linux          |
+                     +----------+-----------+
+                                |
+                                v
+                         +-------------+
+                         |  Terraform  |
+                         +------+------+
+                                |
+                                v
+                         +-------------+
+                         |    Docker   |
+                         +------+------+
+                                |
+              +-----------------+-----------------+
+              |                                   |
+              v                                   v
+     +-------------------+              +-------------------+
+     | Nginx Application |              |    PostgreSQL     |
+     | local-cloud-app   |              |  local-postgres   |
+     |     :8080         |              |      :5432        |
+     +---------+---------+              +---------+---------+
+              |                                   |
+              +---------------+-------------------+
+                              |
+                              v
+                     Docker Networks
