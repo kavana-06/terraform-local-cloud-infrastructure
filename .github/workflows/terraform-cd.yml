@@ -13,6 +13,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Terraform Deployment
+        env:
+          TF_VAR_database_password: ${{ secrets.DATABASE_PASSWORD }}
         run: ./scripts/deploy.sh
 
       - name: Verify application
